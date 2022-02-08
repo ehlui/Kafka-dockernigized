@@ -1,0 +1,4 @@
+# kafka logs
+/data/kafka-1/
+/data/kafka-producer-1/
+/data/zookeeper-1/
