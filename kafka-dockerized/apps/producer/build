@@ -1,0 +1,6 @@
+#!/bin/bash -e
+
+image_tag=kafka-image
+
+if [  -n "$1" ]; then image_tag=$1; fi
+docker build . -t "$image_tag"
