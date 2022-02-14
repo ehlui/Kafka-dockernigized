@@ -25,9 +25,10 @@ run_broker(){
   # shellcheck disable=SC2155
   local is_kafka_container="$(is_kafka_broker)"
   if [[ "$is_kafka_container" == 1 ]]; then
-    docker run -d --rm \
+    docker run -d  \
         --name "$CONTAINER_NAME" \
         --net kafka-net \
+        --restart always \
         -v "${PWD}"/data/"$CONTAINER_NAME"/:/tmp/kafka-logs/ \
         -v "${PWD}"/config/"$CONTAINER_NAME"/$KAFKA_PROPERTIES:/kafka/config/$KAFKA_PROPERTIES  \
         "$IMAGE_NAME"

@@ -10,7 +10,7 @@
 #   -It force to remove the containers we're going to use
 
 if [ -n "$1" ] && [ "$1" == "rm" ] ; then
-  docker rm -f zookeeper-1 kafka-1 service-producer-1
+  docker rm -f zookeeper-1 kafka-1 service-producer-1 service-consumer-1
 fi
 
 chmod -R +x  ./scripts
@@ -24,5 +24,7 @@ sleep 5
 # Wait for the broker to setup
 sleep 2
 ./scripts/producer.sh
+sleep 2
+./scripts/consumer.sh
 # Let's see if all 3 are running
 docker ps
