@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="logPattern" value="%d %-5level %logger{35} - %msg%n"/>
+    <property name="logEncoding" value="UTF-8"/>
+    <property name="logDirectory" value="logs"/>
+    <!-- Insert the current time formatted as "yyyyMMdd'T'HHmmss" under
+     the key "bySecond" into the logger context. This value will be
+     available to all subsequent configuration elements. -->
+    <timestamp key="bySecond" datePattern="yyyyMMdd'T'HHmmss"/>
+    <timestamp key="currentTimestamp" datePattern="yyyy-MM-dd'_'HH-mm-ss"/>
+
+    <appender name="fileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${logDirectory}/consumer-1-${currentTimestamp}.log</file>
+            <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${logDirectory}/myapplication_%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>30MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <charset>${logEncoding}</charset>
+            <pattern>${logPattern}</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="com.ehlui.kafkadockerized" level="TRACE"/>
+
+    <root level="INFO">
+        <appender-ref ref="fileAppender"/>
+    </root>
+</configuration>
