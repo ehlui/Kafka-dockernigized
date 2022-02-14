@@ -23,7 +23,7 @@ run_zookeeper(){
   # shellcheck disable=SC2155
   local is_zk_container="$(is_zookeeper)"
   if [[ "$is_zk_container" == 1 ]]; then
-    docker run -d --rm \
+    docker run -d \
         --name "$CONTAINER_NAME" \
         --net kafka-net \
         -v "${PWD}"/config/zookeeper-1/zookeeper.properties:/kafka/config/zookeeper.properties \
