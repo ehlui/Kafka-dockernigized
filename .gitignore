@@ -1,7 +1,5 @@
 # kafka logs
-/data/kafka-1/
-/data/kafka-producer-1/
-/data/zookeeper-1/
+**/data
 
 **/kafka-py
 
@@ -9,5 +7,7 @@
 **/venv
 *.pyc
 
+# IDE/OS
 .DS_Store
 .idea
+.mvn
